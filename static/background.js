@@ -50,7 +50,7 @@ function resetTabState({ tabId /*: number */ }) /*: void */ {
 
 function conditionallyUpdateView(tabId) {
 	getCurrentlyViewedTabId()
-		.then(function(activeTabId /*: number */) {
+		.then(activeTabId /*: number */ => {
 			if (activeTabId === tabId) {
 				const tabData = getTabData(tabId);
 				updateView(tabData);
@@ -68,8 +68,8 @@ function updateView([timesCurrentlyDoing /*: number */, timesAlreadyDone /*: num
 }
 
 function getCurrentlyViewedTabId() /*: Promise<number> */ {
-	return new Promise(function(resolve) {
-		chrome.tabs.query({ active: true, lastFocusedWindow: true }, function([ { id /*: number */ } ]) {
+	return new Promise(resolve => {
+		chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([ { id /*: number */ } ]) => {
 			resolve(id);
 		});
 	});
