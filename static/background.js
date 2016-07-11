@@ -62,6 +62,10 @@ function updateView([timesCurrentlyDoing /*: number */, timesAlreadyDone /*: num
 	chrome.browserAction.setBadgeText({ text: String(timesAlreadyDone) });
 	if (timesCurrentlyDoing > 0) {
 		chrome.browserAction.setIcon({ path: 'static/on.gif' });
+		if(timesAlreadyDone <= 20)
+			chrome.browserAction.setBadgeBackgroundColor({color : [0,250,0,250]});
+		else
+			chrome.browserAction.setBadgeBackgroundColor({color : [250,0,0,250]});		
 	} else {
 		chrome.browserAction.setIcon({ path: 'static/off.png' });
 	}
